@@ -17,7 +17,7 @@ public class Country {
 
     @ManyToOne
     @JoinColumn
-    private ServiceProvider ServiceProvider;
+    private ServiceProvider serviceProvider;
 
     public Country() {
     }
@@ -27,7 +27,7 @@ public class Country {
         this.countryName = countryName;
         this.code = code;
         this.user = user;
-        ServiceProvider = serviceProvider;
+        this.serviceProvider = serviceProvider;
     }
 
     public int getId() {
@@ -63,10 +63,10 @@ public class Country {
     }
 
     public ServiceProvider getServiceProvider() {
-        return ServiceProvider;
+        return serviceProvider;
     }
 
     public void setServiceProvider(ServiceProvider serviceProvider) {
-        ServiceProvider = serviceProvider;
+        this.serviceProvider = serviceProvider;
     }
 }
