@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/connection")
 public class ConnectionController {
-    @Autowired
-    ConnectionServiceImpl connectionService;
+   // @Autowired
+    ConnectionServiceImpl connectionService = new ConnectionServiceImpl();
 
     @PostMapping("/connect")
     public ResponseEntity<Void> connect(@RequestParam int userId, @RequestParam String countryName) throws Exception{

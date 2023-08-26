@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    AdminServiceImpl adminService;
+  //  @Autowired
+    AdminServiceImpl adminService = new AdminServiceImpl();
 
     @PostMapping("/register")
     public ResponseEntity<Void> registerAdmin(@RequestParam String username, @RequestParam String password){
