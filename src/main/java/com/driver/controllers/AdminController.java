@@ -1,5 +1,7 @@
 package com.driver.controllers;
 
+import com.driver.model.Admin;
+import com.driver.model.ServiceProvider;
 import com.driver.services.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,12 @@ public class AdminController {
     @PostMapping("/addProvider")
     public ResponseEntity<Void> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName){
         //add a serviceProvider under the admin and return updated admin
-        Admin admin = adminService.addServiceProvider(adminId, providerName);
+        try {
+            Admin admin = adminService.addServiceProvider(adminId, providerName);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
