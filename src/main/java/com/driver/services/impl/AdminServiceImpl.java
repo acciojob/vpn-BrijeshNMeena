@@ -44,9 +44,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin addServiceProvider(int adminId, String providerName) {
         Optional<Admin> optionalAdmin = adminRepository1.findById(adminId);
-        if(!optionalAdmin.isPresent()) {
-            throw new AdminNotFound("Invalid admin.");
-        }
+//        if(!optionalAdmin.isPresent()) {
+//            throw new AdminNotFound("Invalid admin.");
+//        }
 
         Admin admin = optionalAdmin.get();
 
@@ -84,9 +84,9 @@ public class AdminServiceImpl implements AdminService {
         country.setCode(countryName1.toCode());
 
         Optional<ServiceProvider> optionalServiceProvider = serviceProviderRepository1.findById(serviceProviderId);
-        if(!optionalServiceProvider.isPresent()){
-            throw new ServiceProviderException("Invalid Service provider");
-        }
+//        if(!optionalServiceProvider.isPresent()){
+//            throw new ServiceProviderException("Invalid Service provider");
+//        }
 
         ServiceProvider serviceProvider = optionalServiceProvider.get();
         country.setServiceProvider(serviceProvider);

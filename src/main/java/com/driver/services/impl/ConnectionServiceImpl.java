@@ -31,9 +31,9 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User connect(int userId, String countryName) throws Exception{
         Optional<User> optionalUser = userRepository2.findById(userId);
-        if(!optionalUser.isPresent()){
-            throw new UserException("User not found");
-        }
+//        if(!optionalUser.isPresent()){
+//            throw new UserException("User not found");
+//        }
         User user = optionalUser.get();
 
         if(user.isConnected()) {
@@ -99,9 +99,7 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User disconnect(int userId) throws Exception {
         Optional<User> optionalUser = userRepository2.findById(userId);
-        if(!optionalUser.isPresent()){
-            throw new UserException("User not found");
-        }
+//        }
         User user = optionalUser.get();
 
         if(!user.isConnected()) {
@@ -116,15 +114,15 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User communicate(int senderId, int receiverId) throws Exception {
         Optional<User> optionalUser = userRepository2.findById(receiverId);
-        if(!optionalUser.isPresent()){
-            throw new UserException("Receiver not found");
-        }
+//        if(!optionalUser.isPresent()){
+//            throw new UserException("Receiver not found");
+//        }
         User receiver = optionalUser.get();
 
         Optional<User> optionalUser1 = userRepository2.findById(senderId);
-        if(!optionalUser1.isPresent()){
-            throw new UserException("Sender not found");
-        }
+//        if(!optionalUser1.isPresent()){
+//            throw new UserException("Sender not found");
+//        }
         User sender = optionalUser1.get();
 
         String country = null;

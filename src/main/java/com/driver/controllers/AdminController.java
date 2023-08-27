@@ -24,12 +24,9 @@ public class AdminController {
     @PostMapping("/addProvider")
     public ResponseEntity<Void> addServiceProvider(@RequestParam int adminId, @RequestParam String providerName){
         //add a serviceProvider under the admin and return updated admin
-        try {
+       // try {
             Admin admin = adminService.addServiceProvider(adminId, providerName);
-        }
-        catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+      //  }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
