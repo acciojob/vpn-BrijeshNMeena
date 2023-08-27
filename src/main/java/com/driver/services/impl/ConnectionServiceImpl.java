@@ -36,7 +36,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 //        }
         User user = optionalUser.get();
 
-        if(user.isConnected()) {
+        if(user.getConnected()) {
             throw new ConnectionException("Already connected");
         }
 
@@ -102,7 +102,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 //        }
         User user = optionalUser.get();
 
-        if(!user.isConnected()) {
+        if(!user.getConnected()) {
             throw new ConnectionException("Already disconnected");
         }
 
@@ -127,7 +127,7 @@ public class ConnectionServiceImpl implements ConnectionService {
 
         String country = null;
         String code = receiver.getOriginalCountry().getCode();
-        if(receiver.isConnected()) {
+        if(receiver.getConnected()) {
             String maskedIp = receiver.getMaskedIp();
             code = maskedIp.substring(0, maskedIp.indexOf("."));
             if(CountryName.IND.toCode().equals(code))

@@ -21,7 +21,7 @@ public class User {
     private Country originalCountry;
 
     @ManyToMany
-    @JoinTable
+    @JoinColumn
     private List<ServiceProvider> serviceProviderList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -88,7 +88,7 @@ public class User {
         this.maskedIp = maskedIp;
     }
 
-    public boolean isConnected() {
+    public boolean getConnected() {
         return connected;
     }
 
