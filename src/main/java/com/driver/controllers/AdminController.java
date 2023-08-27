@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
   //  @Autowired
     AdminServiceImpl adminService = new AdminServiceImpl();
-
+    // commented
     @PostMapping("/register")
     public ResponseEntity<Void> registerAdmin(@RequestParam String username, @RequestParam String password){
         //create an admin and return
