@@ -55,7 +55,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         else
             throw new CountryNotFound("Country not found");
 
-        if(user.getCountry().getCode().equals(countryName1.toCode())) {
+        if(user.getOriginalCountry().getCode().equals(countryName1.toCode())) {
             return user;
         }
 
@@ -126,7 +126,7 @@ public class ConnectionServiceImpl implements ConnectionService {
         User sender = optionalUser1.get();
 
         String country = null;
-        String code = receiver.getCountry().getCode();
+        String code = receiver.getOriginalCountry().getCode();
         if(receiver.isConnected()) {
             String maskedIp = receiver.getMaskedIp();
             code = maskedIp.substring(0, maskedIp.indexOf("."));
@@ -142,7 +142,7 @@ public class ConnectionServiceImpl implements ConnectionService {
                 country = "JPN";
         }
 
-        if(sender.getCountry().getCode().equals(code)) {
+        if(sender.getOriginalCountry().getCode().equals(code)) {
             return sender;
         }
 

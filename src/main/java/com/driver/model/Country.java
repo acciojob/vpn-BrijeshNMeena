@@ -11,13 +11,13 @@ public class Country {
     private CountryName countryName;
     private String code;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "originalCountry", cascade = CascadeType.ALL)
     private User user;
 
     @ManyToOne
     @JoinColumn
     private ServiceProvider serviceProvider;
+
 
     public Country() {
     }
