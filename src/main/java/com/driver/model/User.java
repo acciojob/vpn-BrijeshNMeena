@@ -14,7 +14,7 @@ public class User {
     private String password;
     private String originalIp;
     private String maskedIp = null;
-    private Boolean connected;
+    private Boolean connected = false;
 
     @OneToOne
     @JoinColumn
@@ -45,7 +45,7 @@ public class User {
     }
 
     public void setOriginalCountry(Country originalCountry) {
-        originalCountry = originalCountry;
+        this.originalCountry = originalCountry;
     }
 
     public int getId() {

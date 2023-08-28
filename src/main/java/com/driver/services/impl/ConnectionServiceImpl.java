@@ -31,9 +31,9 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User connect(int userId, String countryName) throws Exception{
         Optional<User> optionalUser = userRepository2.findById(userId);
-//        if(!optionalUser.isPresent()){
-//            throw new UserException("User not found");
-//        }
+        if(!optionalUser.isPresent()){
+            throw new UserException("User not found");
+        }
         User user = optionalUser.get();
 
         if(user.getConnected()) {
@@ -85,10 +85,8 @@ public class ConnectionServiceImpl implements ConnectionService {
         connectionRepository2.save(connection);
         user.setMaskedIp(country.getCode()+"."+serviceProvider.getId()+"."+userId);
         user.setConnected(true);
-        user.getServiceProviderList().add(serviceProvider);
         user.getConnectionList().add(connection);
         //user.setCountry(country);
-        serviceProvider.getUsers().add(user);
         serviceProvider.getConnectionList().add(connection);
 
         serviceProviderRepository2.save(serviceProvider);
@@ -99,7 +97,9 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User disconnect(int userId) throws Exception {
         Optional<User> optionalUser = userRepository2.findById(userId);
-//        }
+        if(!optionalUser.isPresent()){
+            throw new UserException("Receiver not found");
+        }
         User user = optionalUser.get();
 
         if(!user.getConnected()) {
@@ -114,15 +114,15 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User communicate(int senderId, int receiverId) throws Exception {
         Optional<User> optionalUser = userRepository2.findById(receiverId);
-//        if(!optionalUser.isPresent()){
-//            throw new UserException("Receiver not found");
-//        }
+        if(!optionalUser.isPresent()){
+            throw new UserException("Receiver not found");
+        }
         User receiver = optionalUser.get();
 
         Optional<User> optionalUser1 = userRepository2.findById(senderId);
-//        if(!optionalUser1.isPresent()){
-//            throw new UserException("Sender not found");
-//        }
+        if(!optionalUser1.isPresent()){
+            throw new UserException("Sender not found");
+        }
         User sender = optionalUser1.get();
 
         String country = null;
@@ -130,17 +130,19 @@ public class ConnectionServiceImpl implements ConnectionService {
         if(receiver.getConnected()) {
             String maskedIp = receiver.getMaskedIp();
             code = maskedIp.substring(0, maskedIp.indexOf("."));
-            if(CountryName.IND.toCode().equals(code))
-                country = "IND";
-            else if (CountryName.AUS.toCode().equals(code))
-                country = "AUS";
-            else if (CountryName.USA.toCode().equals(code))
-                country = "USA";
-            else if (CountryName.CHI.toCode().equals(code))
-                country = "CHI";
-            else if (CountryName.JPN.toCode().equals(code))
-                country = "JPN";
         }
+
+        if(CountryName.IND.toCode().equals(code))
+            country = "IND";
+        else if (CountryName.AUS.toCode().equals(code))
+            country = "AUS";
+        else if (CountryName.USA.toCode().equals(code))
+            country = "USA";
+        else if (CountryName.CHI.toCode().equals(code))
+            country = "CHI";
+        else if (CountryName.JPN.toCode().equals(code))
+            country = "JPN";
+
 
         if(sender.getOriginalCountry().getCode().equals(code)) {
             return sender;
